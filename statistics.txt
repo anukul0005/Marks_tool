@@ -1,0 +1,15 @@
+Now, I also want to create a statistical data of my entered values in the following way:
+The statistical table on this page based on records based data will have these columns:
+Chapter --- > "The display of unique chapters as referred from the records table - as per input from user and imported excel.
+Total Questions --> "Total questions as counted from all the questions in record table (sorted by chapters)
+Attempted --->  Counting of attempted (yes) questions after filtration chapterwise -- from records table
+Correct --> Counting of correct (yes) questions after filtration chapterwise -- from records table
+Incorrect --> Counting of correct (no) questions after filtration chapterwise -- from records table	Accuracy (%)	--> Percentage of correct no of questions/ attempted no of questions
+Score --> Score obtained = 2*Correct question count + (-5)*Incorrect question count
+Score Percentage"	-- Score 
+Unattempted	"Unattempted
+Rate"	"Skipped
+Total"	"Skipped
+f. Unattempted(%)"	Topic %	Easy	Medium	"Easy
+(Correct)"	"Easy
+(Skipped)"

@@ -1,0 +1,19 @@
+I want to create a similar flask app but my code needs be on the same lines
+
+I need to have the following columns:
+
+Test No. ---> A numerical textbox which accepts values from 1 to n (not 0) from user
+Date --> to be selected from a date time box --- like a date time selector to take in values
+Q No. --> takes in values from user from 1 to 25 ( a numerical textbox) -- not 26,not 0
+Chapter --> a toggle box allowing user to select from a list of values namely
+["Data Interpretation",Algebra,Average,"Co-ordinate Geometry","Geometry(Circles)","Geometry
+(Triangles)",Mensuration,Geometry,SI/CI,"Time,Speed&Distance","Mixtures&Alligations",
+"Ratio&Porportions",Simplification,"Boats&Streams",Time&Work,Trignometry,
+"Heights&Distances","Number System","Percentages,Profit &Loss","Pipes & Cisterns"]
+Attempted --> a toggle bar allowing user to select from yes or no
+Correct --> a toggle bar allowing user to select from yes or no
+Difficulty	 --> a toggle bar which allows user to select from [Easy Medium Hard]
+Remarks --> a toggle bar which allows user to select from [Silly mistake Analytical Skipped]
+
+A csv could be imported pls change the code above accordingly.
+This could should allow input from an user.It should be designed in this way
