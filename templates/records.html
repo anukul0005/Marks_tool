@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        form, .actions {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #888;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .filter-form {
+            margin-bottom: 20px;
+        }
+
+        .filter-form input[type="number"] {
+            padding: 5px;
+            width: 100px;
+        }
+
+        .filter-form button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Question Attempts</h1>
+
+    <div class="actions">
+        <form action="{{ url_for('import_data') }}" method="post" enctype="multipart/form-data" style="display:inline;">
+            <input type="file" name="file" accept=".csv,.xlsx" required>
+            <button type="submit">Import Data</button>
+        </form>
+
+        <a href="{{ url_for('export_data') }}">⬇️ Export Data</a> |
+        <a href="{{ url_for('add_entry') }}">➕ Add New Entry</a>
+        <a href="{{ url_for('statistics') }}">📊 View Statistics</a>
+    </div>
+
+    <form method="get" action="{{ url_for('view_records') }}" class="filter-form">
+        <label for="test_no">Filter by Test No.:</label>
+        <input type="number" id="test_no" name="test_no" min="1" value="{{ test_no }}">
+        <button type="submit">Filter</button>
+        {% if test_no %}
+            <a href="{{ url_for('view_records') }}">Clear Filter</a>
+        {% endif %}
+    </form>
+
+    {% if records %}
+    <table>
+        <tr>
+            {% for key in records[0].keys() %}
+            <th>{{ key }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in records %}
+        <tr>
+            {% for val in row.values() %}
+            <td>{{ val }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No records found.</p>
+    {% endif %}
+</body>
+</html>

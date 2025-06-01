@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Question Attempt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 6px;
+            font-size: 13px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            font-size: 13px;
+            text-decoration: none;
+            color: #444;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Add New Question Attempt</h2>
+    <form method="POST">
+        <label for="test_no">Test No.</label>
+        <input type="number" name="test_no" min="1" required>
+
+        <label for="date">Date</label>
+        <input type="date" name="date" required>
+
+        <label for="q_no">Q No.</label>
+        <input type="number" name="q_no" min="1" max="25" required>
+
+        <label for="chapter">Chapter</label>
+        <select name="chapter" required>
+            {% for chapter in chapters %}
+            <option value="{{ chapter }}">{{ chapter }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="attempted">Attempted</label>
+        <select name="attempted" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="correct">Correct</label>
+        <select name="correct" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label for="difficulty">Difficulty</label>
+        <select name="difficulty" required>
+            {% for diff in difficulties %}
+            <option value="{{ diff }}">{{ diff }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="remarks">Remarks</label>
+        <select name="remarks" required>
+            {% for remark in remarks %}
+            <option value="{{ remark }}">{{ remark }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Submit</button>
+        <a class="back-link" href="{{ url_for('view_records') }}">View All Records</a>
+        <a class="back-link" href="{{ url_for('statistics') }}">View Statistics</a>
+
+    </form>
+</body>
+</html>

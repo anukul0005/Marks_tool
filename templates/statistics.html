@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Statistics</title>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <style>
+        html, body {
+            margin: 0; padding: 0; height: 100%;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-sizing: border-box;
+            padding: 10px 20px;
+        }
+        h1 {
+            margin: 0 0 10px 0;
+            flex-shrink: 0;
+        }
+        .nav-links {
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+        .nav-links a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .table-container {
+            flex-grow: 1;
+            max-height: calc(100vh - 100px);
+            overflow: hidden;
+        }
+
+        table.dataTable {
+            width: 100% !important;
+            border-collapse: collapse;
+            table-layout: auto; /* allow flexible column widths */
+            font-size: 14px; /* slightly bigger */
+        }
+        table.dataTable thead th {
+            background: #f0f0f0;
+            border-bottom: 2px solid #ccc;
+            padding: 6px 8px;
+            text-align: left;
+            cursor: pointer;
+        }
+        table.dataTable tbody td {
+            padding: 6px 8px;
+            white-space: normal;       /* allow wrapping */
+            overflow: visible;         /* allow full text */
+            text-overflow: unset;
+        }
+
+        div.dataTables_scrollBody {
+            overflow: hidden !important;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Statistics</h1>
+
+    <div class="nav-links">
+        <a href="{{ url_for('view_records') }}">&#8592; Back to Records</a>
+        <a href="{{ url_for('add_entry') }}">&#8962; Home</a>
+    </div>
+
+    <div class="table-container">
+        <table id="statsTable" class="display">
+            <thead>
+                <tr>
+                    {% for col in stats[0].keys() %}
+                    <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in stats %}
+                <tr>
+                    {% for value in row.values() %}
+                    <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#statsTable').DataTable({
+                paging: false,
+                searching: false,
+                info: false,
+                ordering: true,
+                scrollY: false,
+                scrollCollapse: false
+            });
+        });
+    </script>
+
+</body>
+</html>
